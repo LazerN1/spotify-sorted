@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bg-1: #330283;
+  --bg-2: #ba00a4;
 }
 
 @theme inline {
@@ -20,7 +23,239 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(
+    120deg,
+    var(--bg-1),
+    var(--bg-2)
+  );
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+  background-position: 0% 50%;
+  animation: gradient-shift 60s ease infinite;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.landing {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(24px, 5vw, 64px);
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 64px);
+}
+
+.landing-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: #f8fafc;
+}
+
+.badge {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.landing-title {
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.landing-subtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  color: rgba(248, 250, 252, 0.8);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.landing-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cta {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 12px 22px;
+  background: #0f172a;
+  color: #f8fafc;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
+}
+
+.landing-note {
+  font-size: 12px;
+  color: rgba(248, 250, 252, 0.7);
+}
+
+.landing-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.stat {
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(248, 250, 252, 0.6);
+  margin: 0 0 6px;
+}
+
+.stat-value {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.landing-card {
+  position: relative;
+  border-radius: 24px;
+  padding: clamp(20px, 4vw, 32px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.3);
+  color: #0f172a;
+  overflow: hidden;
+}
+
+.landing-card::after {
+  content: "";
+  position: absolute;
+  inset: -40% auto auto -20%;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.4), transparent 70%);
+  filter: blur(0);
+  pointer-events: none;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 13px;
+  color: rgba(15, 23, 42, 0.65);
+  margin: 4px 0 0;
+}
+
+.card-pill {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.album-art {
+  width: 200px;
+  height: 200px;
+  border-radius: 28px;
+  background: linear-gradient(140deg, #111827, #4338ca, #f472b6);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 20px;
+}
+
+.album-art img {
+  width: 80px;
+  height: 80px;
+}
+
+.track-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.track-title {
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.track-artist {
+  font-size: 13px;
+  color: rgba(15, 23, 42, 0.7);
+  margin: 0;
+}
+
+.track-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.bubble-row {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bubble {
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  background: rgba(15, 23, 42, 0.08);
+  color: rgba(15, 23, 42, 0.9);
+}
+
+@media (max-width: 768px) {
+  .landing {
+    padding-top: 64px;
+  }
+
+  .landing-actions {
+    align-items: flex-start;
+  }
 }
