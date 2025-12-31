@@ -10,11 +10,11 @@ export default function AccountMenu() {
   }
 
   return (
-    <div className="group fixed right-6 top-6 z-50">
-      <button className="rounded-md border border-neutral-300 bg-white/80 px-3 py-1 text-sm backdrop-blur">
+    <div className="account-menu group relative">
+      <button className="account-trigger">
         Account
       </button>
-      <div className="absolute right-0 mt-2 hidden min-w-[120px] rounded-md border border-neutral-200 bg-white p-1 shadow-md group-hover:block">
+      <div className="account-dropdown">
         <button
           onClick={() => signOut({ callbackUrl: "/" })}
           className="w-full rounded-md px-3 py-2 text-left text-sm hover:bg-neutral-100"

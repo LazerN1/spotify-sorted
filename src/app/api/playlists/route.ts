@@ -9,8 +9,25 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const playlists = await fetchPlaylists(session.accessToken);
-  return NextResponse.json({ playlists }, { headers: { "Cache-Control": "no-store" } });
+  try {
+    const playlists = await fetchPlaylists(session.accessToken);
+    return NextResponse.json(
+      { playlists },
+      { headers: { "Cache-Control": "no-store" } }
+    );
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (message.includes("429")) {
+      return NextResponse.json(
+        { error: "Rate limited by Spotify" },
+        { status: 429 }
+      );
+    }
+    return NextResponse.json(
+      { error: "Failed to load playlists" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(req: Request) {

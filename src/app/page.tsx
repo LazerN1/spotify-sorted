@@ -9,37 +9,23 @@ export default async function HomePage() {
   return (
     <main className="landing">
       <section className="landing-hero">
-        <div className="badge">Personal Spotify sorter</div>
         <h1 className="landing-title">Sorted</h1>
+        <div className="inline">
+          <h2 className="for">for&nbsp;</h2>
+          <img className='spotifyLogo' src="/spotify_logo.svg" />
+        </div>
         <p className="landing-subtitle">
-          Sort your newest likes into the right playlists with a simple drag.
-          Clean, fast, and built for momentum.
+          Sort your newest likes into the right playlists.<br/>
+          Don't let dragging be a drag!
         </p>
         <div className="landing-actions">
           {session?.accessToken ? (
-            <Link href="/me" className="cta">
+            <Link href="/my-songs" className="cta">
               Let&apos;s go
             </Link>
           ) : (
             <LoginButton />
           )}
-          <span className="landing-note">
-            You choose the playlists. Nothing is moved without your drag.
-          </span>
-        </div>
-        <div className="landing-stats">
-          <div className="stat">
-            <p className="stat-label">Flow</p>
-            <p className="stat-value">Pick up to 6 playlists</p>
-          </div>
-          <div className="stat">
-            <p className="stat-label">Speed</p>
-            <p className="stat-value">Latest like on deck</p>
-          </div>
-          <div className="stat">
-            <p className="stat-label">Control</p>
-            <p className="stat-value">Drag to add, skip to pass</p>
-          </div>
         </div>
       </section>
 
